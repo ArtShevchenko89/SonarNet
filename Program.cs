@@ -6,6 +6,7 @@ Console.WriteLine($"{SonarNet.AppInfo.Name} v{SonarNet.AppInfo.Version} — на
 var repository = new UserRepository();
 repository.Add("admin", "Адміністратор системи", "admin@sonarnet.local");
 repository.Add("student", "Студент", "student@sonarnet.local");
+repository.Add("teacher", "Викладач", "teacher@sonarnet.local");
 
 foreach (var user in repository.GetAll())
     Console.WriteLine(user);
@@ -13,6 +14,8 @@ foreach (var user in repository.GetAll())
 var scores = new double[] { 72, 85, 90, 64, 78 };
 Console.WriteLine($"Середній бал: {StatisticsService.Average(scores):F2}");
 Console.WriteLine($"Медіана: {StatisticsService.Median(scores):F2}");
+Console.WriteLine($"Медіана: {StatisticsService.Median(scores):F2}");
+Console.WriteLine($"Максимальний бал: {scores.Max():F2}");
 
 var auth = new UserAuth(repository);
 auth.SetPassword("admin", "Adm1n#Secret");
