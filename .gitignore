@@ -3,7 +3,6 @@ bin/
 obj/
 .vscode/
 .idea/
-SonarNet.csproj
 
 # Ігноруємо інші файли/каталоги, які не треба відстежувати
 *.user
