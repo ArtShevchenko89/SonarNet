@@ -37,7 +37,10 @@ public class UserAuth
         if (IsLocked(login))
             return false;
 
-        var (salt, hash) = _credentials[login];
+        if (string.IsNullOrEmpty(login) || !_credentials.TryGetValue(login, out var credentials))
+            return false;
+
+        var (salt, hash) = credentials;
         bool ok = ComputeHash(password, salt) == hash;
 
         _failedAttempts[login] = ok ? 0 : _failedAttempts.GetValueOrDefault(login) + 1;
