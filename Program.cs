@@ -13,3 +13,8 @@ foreach (var user in repository.GetAll())
 var scores = new double[] { 72, 85, 90, 64, 78 };
 Console.WriteLine($"Середній бал: {StatisticsService.Average(scores):F2}");
 Console.WriteLine($"Медіана: {StatisticsService.Median(scores):F2}");
+
+var auth = new UserAuth(repository);
+auth.SetPassword("admin", "Adm1n#Secret");
+Console.WriteLine($"Вхід admin з правильним паролем: {auth.Authenticate("admin", "Adm1n#Secret")}");
+Console.WriteLine($"Вхід admin з неправильним паролем: {auth.Authenticate("admin", "wrong-pass")}");
