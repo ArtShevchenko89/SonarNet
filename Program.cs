@@ -1,7 +1,7 @@
 ﻿using SonarNet.Services;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
-Console.WriteLine("SonarNet — навчальний проєкт для аналізу якості коду");
+Console.WriteLine($"{SonarNet.AppInfo.Name} v{SonarNet.AppInfo.Version} — навчальний проєкт для аналізу якості коду");
 
 var repository = new UserRepository();
 repository.Add("admin", "Адміністратор системи", "admin@sonarnet.local");
@@ -18,3 +18,4 @@ var auth = new UserAuth(repository);
 auth.SetPassword("admin", "Adm1n#Secret");
 Console.WriteLine($"Вхід admin з правильним паролем: {auth.Authenticate("admin", "Adm1n#Secret")}");
 Console.WriteLine($"Вхід admin з неправильним паролем: {auth.Authenticate("admin", "wrong-pass")}");
+Console.WriteLine($"Вхід під неіснуючим логіном guest: {auth.Authenticate("guest", "any-pass")}");
